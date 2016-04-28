@@ -135,9 +135,17 @@ cpuCardFinal2();
 
 function duplicates(){
   for (var i = 0; i<cpuPlayerNumber; i++){
-    while (cpuCard1.indexOf(cpuCard2[i]) !== -1){
-      var dupLocation = cpuCard1.indexOf(cpuCard2[i]);
-      var newCard = cardsRandom2() + ' of ' + colorRandom2();
+    while (cpuCard1.indexOf(cpuCard2[i]) !== -1 && cpuCard1.indexOf(cpuCard1[i]) !== -1 && cpuCard1.indexOf(playerCards) !== -1 && cpuCard1.indexOf(playerCards2) !== -1){
+        if (cpuCard1.indexOf(cpuCard2[i]) !== -1){
+        var dupLocation = cpuCard1.indexOf(cpuCard2[i]);
+      } else if (cpuCard1.indexOf(cpuCard1[i]) !== -1) {
+        var dupLocation = cpuCard1.indexOf(cpuCard1[i]);
+      } else if (cpuCard1.indexOf(playerCards) !== -1) {
+        var dupLocation = cpuCard1.indexOf(playerCards);
+      } else{
+        var dupLocation = cpuCard1.indexOf(playerCards2);
+      }
+      var newCard = cardValue[cardsRandom2()] + ' of ' + cardColor[colorRandom2()];
       cpuCard1.splice(dupLocation,1,newCard);
     }
   }
