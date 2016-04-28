@@ -74,8 +74,85 @@ console.log("YOUR CARDS: " + playerCards + " and " + playerCards2);
 
 
 // Step 3 - Deal CPU cardColor
+var cpuValue1 = [];
+var cpuColor1 = [];
+var cpuValue2 = [];
+var cpuColor2 = [];
+var cpuCard1 = [];
+var cpuCard2 = [];
+
+var cpuPlayerNumber = playerNumber - 1;
+//console.log(cpuPlayerNumber);
+
+// function cpuCardValueColor(){
+//   for (var i = 0; i < cpuPlayerNumber; i++){
+//     cpuValue1[i] = cardValue[cardsRandom2()];
+//     cpuColor1[i] = cardColor[colorRandom2()];
+//     cpuValue2[i] = cardValue[cardsRandom2()];
+//     cpuColor2[i] = cardColor[colorRandom2()];
+//     cpuCard1[i] = cpuValue1[i] + ' of ' + cpuColor1[i];
+//     cpuCard2[i] = cpuValue2[i] + ' of ' + cpuColor2[i];
+//   }
+// }
+
+function cpuCardValueColor1(){
+  for (var i = 0; i < cpuPlayerNumber; i++){
+    cpuValue1[i] = cardValue[cardsRandom2()];
+    cpuColor1[i] = cardColor[colorRandom2()];
+  }
+}
+
+function cpuCardValueColor2(){
+  for (var i = 0; i < cpuPlayerNumber; i++){
+    cpuValue2[i] = cardValue[cardsRandom2()];
+    cpuColor2[i] = cardColor[colorRandom2()];
+  }
+}
+
+function cpuCardFinal1(){
+  for (var i = 0; i < cpuPlayerNumber; i++){
+    cpuCard1[i] = cpuValue1[i] + ' of ' + cpuColor1[i];
+  }
+}
+
+function cpuCardFinal2(){
+  for (var i = 0; i < cpuPlayerNumber; i++){
+    cpuCard2[i] = cpuValue2[i] + ' of ' + cpuColor2[i];
+  }
+}
+
+cpuCardValueColor1();
+cpuCardValueColor2();
+cpuCardFinal1();
+cpuCardFinal2();
 
 
+
+//console.log(cpuValue1 + " // " + cpuColor1 + " // " + cpuValue2 + " // " + cpuColor2);
+//console.log(cpuCard1 + " // " + cpuCard2);
+
+// CHECK if same cards
+
+function duplicates(){
+  for (var i = 0; i<cpuPlayerNumber; i++){
+    while (cpuCard1.indexOf(cpuCard2[i]) !== -1){
+      var dupLocation = cpuCard1.indexOf(cpuCard2[i]);
+      var newCard = cardsRandom2() + ' of ' + colorRandom2();
+      cpuCard1.splice(dupLocation,1,newCard);
+    }
+  }
+}
+
+duplicates();
+
+
+function displayCPUcards(){
+  for (var i = 0; i < cpuPlayerNumber; i++){
+    console.log("CPU " + (i+1) + " CARDS: " + cpuCard1[i] + " and " + cpuCard2[i]);
+  }
+}
+
+displayCPUcards();
 
 // Step 4 - Deal Flop, turn and river
 
